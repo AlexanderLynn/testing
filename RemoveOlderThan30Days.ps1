@@ -6,16 +6,19 @@ $Folder = "C:\Users\$env:USERNAME\Downloads"
 $Days = 0
    #Log Directory
 $Drive = "C:\"
-$Folder_Name = "logs\"
+$Folder_Name = "Logs\CustomerDataRemoval\"
 $Log_Folder = $Drive+$Folder_Name
    #File count, initial and post deletion
 $Init_Count = 0
 $Post_Count = 0
 $Hostname = hostname
 #Creates folder if it doesn't exist
-New-Item -Path $Drive -Name "logs" -ItemType "Directory"
+if (Test-Path -Path $Log_Folder) {
+   Write-Output "Directory Exists!"}
+else {
+   New-Item -Path $Drive -Name $Folder_Name -ItemType "Directory"}
 #Counts files to be removed
-Write-Output "Device Name: $Hostname" | Out-File $Log_Folder$Current_Date.log -Append
+Write-Output $Hostname | Out-File $Log_Folder$Current_Date.log -Append
 Write-Output "Files in $Folder older than $Days days removed and listed in: "$Log_Folder$Current_Date
 Write-Output "Files older than $Days days to be deleted:"
 Get-ChildItem $Folder -Recurse -Force -ea 0 |
