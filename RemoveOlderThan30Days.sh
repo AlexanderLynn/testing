@@ -40,4 +40,4 @@ find $FILES_FOLDER_DIR -name "*" -type f -mtime $DAYS_OLD >> $LOG_DIR
 echo "Files older than $DAYS_OLD days old remaining:"
 find $FILES_FOLDER_DIR -name "*" -type f -mtime $DAYS_OLD | wc -l | sed -e 's/^[ \t]*//'
 
-exit 0
+exit 1
